@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Mad Libs Game</title>
+</head>
+<body>
+  <script>
+
+    const userName = prompt("What is your name?");
+
+
+    const word1 = prompt("Enter a noun:");
+    const word2 = prompt("Enter a verb:");
+    const word3 = prompt("Enter an adjective:");
+    const word4 = prompt("Enter a place:");
+    const word5 = prompt("Enter a type of food:");
+
+    
+    const color = prompt("Enter a color (e.g. red, blue, #FF0000):");
+
+   
+    document.write(`<h1>Welcome to the Mad Libs Game, ${userName}!</h1>`);
+    document.write(`<p>Yesterday, I saw a ${word1} walking down the street. It was ${word3} and very ${word2}. I was so hungry that I could have eaten a whole ${word5}!</p>`);
+    document.write(`<p>I decided to go to the ${word4} to get some food. When I got there, I saw a ${word1} riding a ${word2}! It was so ${word3} that I couldn't believe my eyes.</p>`);
+    document.write(`<p>I love playing Mad Libs because it's so much ${word2}. I hope you had fun playing with me, ${userName}!</p>`);
+
+    
+    document.write(`<style>
+      .highlight {
+        background-color: ${color};
+      }
+    </style>`);
+
+    document.write(`<p>Here are the words you entered:</p>`);
+    document.write(`<p><div class="highlight">${word1}</div>, <div class="highlight">${word2}</div>, <div class="highlight">${word3}</div>, <div class="highlight">${word4}</div>, and <div class="highlight">${word5}</div>.</p>`);
+  </script>
+</body>
+</html>

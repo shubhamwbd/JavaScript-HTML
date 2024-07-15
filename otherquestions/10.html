@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Marble Animation</title>
+  <style>
+    #marble-container {
+      position: relative;
+      width: 500px;
+      height: 300px;
+      border: 1px solid black;
+    }
+    .marble {
+      position: absolute;
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      background-color: blue;
+    }
+  </style>
+</head>
+<body>
+  <div id="marble-container">
+    <div class="marble" id="marble1"></div>
+    <div class="marble" id="marble2"></div>
+    <div class="marble" id="marble3"></div>
+  </div>
+  <script>
+    let marbles = document.querySelectorAll(".marble");
+    let animationRunning = true;
+    let animationInterval;
+
+    function animateMarbles() {
+      marbles.forEach((marble, index) => {
+        marble.style.top = `${Math.random() * 300}px`;
+        marble.style.left = `${Math.random() * 500}px`;
+      });
+    }
+
+    animationInterval = setInterval(animateMarbles, 100);
+
+    marbles.forEach((marble) => {
+      marble.addEventListener("mouseover", () => {
+        animationRunning = false;
+        clearInterval(animationInterval);
+      });
+
+      marble.addEventListener("mouseout", () => {
+        animationRunning = true;
+        animationInterval = setInterval(animateMarbles, 100);
+      });
+    });
+  </script>
+</body>
+</html>

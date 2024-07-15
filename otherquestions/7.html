@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Dynamic Paragraphs</title>
+  <style>
+   .highlighted {
+      background-color: yellow;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+  <p id="para1">This is the first paragraph of text.</p>
+  <p id="para2">This is the second paragraph of text.</p>
+  <script>
+    
+    const newPara = document.createElement("p");
+    newPara.textContent = "This is the new paragraph of text.";
+    document.body.insertBefore(newPara, document.getElementById("para2"));
+
+   
+    newPara.addEventListener("mouseover", function() {
+      newPara.className = "highlighted";
+    });
+
+   
+    newPara.addEventListener("mouseout", function() {
+      newPara.className = "";
+    });
+  </script>
+</body>
+</html>

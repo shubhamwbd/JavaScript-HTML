@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Visit Tracker</title>
+</head>
+<body>
+  <h1>Welcome to my page!</h1>
+  <p>This is some sample text.</p>
+  <img src="image.jpg" alt="Sample image">
+  <p id="visit-count"></p>
+  <p id="last-visit"></p>
+
+  <script>
+    const visitCountElement = document.getElementById('visit-count');
+    const lastVisitElement = document.getElementById('last-visit');
+
+    
+    const now = new Date();
+
+    
+    const cookie = getCookie('visitCount');
+
+    if (cookie) {
+      
+      const visitCount = parseInt(cookie) + 1;
+      setCookie('visitCount', visitCount, 30); // expires in 30 days
+
+      
+      setCookie('lastVisit', now.toISOString(), 30); // expires in 30 days
+
+      visitCountElement.textContent = `You have visited ${visitCount} times!`;
+      lastVisitElement.textContent = `You last visited on ${now.toLocaleDateString()} at ${now.toLocaleTimeString()}`;
+    } else {
+     
+      setCookie('visitCount', 1, 30); // expires in 30 days
+      setCookie('lastVisit', now.toISOString(), 30); // expires in 30 days
+
+      visitCountElement.textContent = `You have visited 1 time!`;
+      lastVisitElement.textContent = `You have never visited before`;
+    }
+
+    function getCookie(name) {
+      const value = `; ${document.cookie}`;
+      const parts = value.split(`; ${name}=`);
+      if (parts.length === 2) return parts.pop().split(';').shift();
+    }
+
+    function setCookie(name, value, days) {
+      const expires = new Date(Date.now() + days * 864e5);
+      document.cookie = `${name}=${value}; expires=${expires.toUTCString()}; path=/`;
+    }
+  </script>
+</body>
+</html>

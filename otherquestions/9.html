@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Image Slideshow</title>
+  <style>
+    #slideshow {
+      position: relative;
+      width: 500px;
+      height: 300px;
+    }
+    #slideshow img {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      display: none;
+    }
+    #slideshow img.active {
+      display: block;
+    }
+    #back-button, #forward-button {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      cursor: pointer;
+    }
+    #back-button {
+      left: 10px;
+    }
+    #forward-button {
+      right: 10px;
+    }
+  </style>
+</head>
+<body>
+  <div id="slideshow">
+    <img src="image1.jpg" alt="Image 1">
+    <img src="image2.jpg" alt="Image 2">
+    <img src="image3.jpg" alt="Image 3">
+    <img src="image4.jpg" alt="Image 4">
+    <img src="image5.jpg" alt="Image 5">
+  </div>
+  <img id="back-button" src="back-arrow.png" alt="Back" style="display: none;">
+  <img id="forward-button" src="forward-arrow.png" alt="Forward">
+  <script>
+    const slideshow = document.getElementById("slideshow");
+    const images = slideshow.getElementsByTagName("img");
+    let currentImage = 0;
+
+    // Set the first image as active
+    images[currentImage].classList.add("active");
+
+    // Add event listeners to the buttons
+    document.getElementById("back-button").addEventListener("click", function() {
+      if (currentImage > 0) {
+        images[currentImage].classList.remove("active");
+        currentImage--;
+        images[currentImage].classList.add("active");
+        toggleButtons();
+      }
+    });
+
+    document.getElementById("forward-button").addEventListener("click", function() {
+      if (currentImage < images.length - 1) {
+        images[currentImage].classList.remove("active");
+        currentImage++;
+        images[currentImage].classList.add("active");
+        toggleButtons();
+      }
+    });
+
+    function toggleButtons() {
+      if (currentImage === 0) {
+        document.getElementById("back-button").style.display = "none";
+        document.getElementById("forward-button").style.display = "block";
+      } else if (currentImage === images.length - 1) {
+        document.getElementById("back-button").style.display = "block";
+        document.getElementById("forward-button").style.display = "none";
+      } else {
+        document.getElementById("back-button").style.display = "block";
+        document.getElementById("forward-button").style.display = "block";
+      }
+    }
+
+    toggleButtons();
+  </script>
+</body>
+</html>
